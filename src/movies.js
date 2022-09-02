@@ -3,7 +3,7 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
   let directors = moviesArray.map((elem) => {
-    return elem.directors;
+    return elem.director;
   });
   return directors;
 }
