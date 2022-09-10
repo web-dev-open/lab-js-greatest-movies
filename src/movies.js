@@ -95,21 +95,50 @@ function orderAlphabetically(movies) {
     });
 
     let result = cloneArr.splice(0, 20);
+    console.log(result);
     let titleMovies = result.map((elem) => {
       return elem.title;
     });
 
-    //console.log(titleMovies);
+    // console.log(titleMovies);
+
     return titleMovies;
   }
 }
 //orderAlphabetically(movies);
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  let cloneArr = JSON.parse(JSON.stringify(moviesArray));
+  let updatedMovies = cloneArr.map((elem) => {
+    let numb = elem.duration.match(/\d/g);
+
+    let grabHours = Number(numb[0]) * 60;
+    let grab1stMinutes = Number(numb[1]) * 10;
+    let grab2ndMinutes = Number(numb[2]);
+
+    let totalTime = 0;
+    if (grabHours && grab1stMinutes && grab2ndMinutes) {
+      totalTime = grabHours + grab1stMinutes + grab2ndMinutes;
+    } else if (grabHours && grab1stMinutes) {
+      totalTime = grabHours + grab1stMinutes;
+    } else if (grab1stMinutes && grab2ndMinutes) {
+      totalTime = grab1stMinutes + grab2ndMinutes;
+    } else {
+      totalTime = grabHours;
+    }
+
+    return { ...cloneArr, duration: totalTime };
+  });
+  return updatedMovies;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length == 0) {
+    return null;
+  }
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
