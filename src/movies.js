@@ -15,7 +15,7 @@ function getAllDirectors(moviesArray) {
 function howManyMovies(moviesArray) {
   let sum = 0;
   let directors = moviesArray.map((elem) => {
-    if (elem.director == 'Steven Spielberg') {
+    if (elem.director == 'Steven Spielberg' && elem.genre.includes('Drama')) {
       return sum += 1; 
     }
   })
@@ -24,29 +24,53 @@ function howManyMovies(moviesArray) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-  // let arr = structuredClone(moviesArray);
-  let avg = moviesArray.reduce((sum, elem) => {
+  let arr = JSON.parse(JSON.stringify(moviesArray))
+  let avg = arr.reduce((sum, elem) => {
+    if (elem.score) {
       return sum += elem.score;
+    }  
+    else {
+      return sum;
+    }
   },0)
-
-  if (sum > 0) {
-    return (sum / moviesArray.length).toFixed(2);
+  if (avg) {
+    return Number((avg / arr.length).toFixed(2));
   }
   else {
-    return 0
+    return 0;
   }
   
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
+  let arr = JSON.parse(JSON.stringify(moviesArray))
+  let sum = 0;
+
+  let avg = arr.reduce((sum, elem) => {
+    if (elem.genre.includes('Drama')) {
+      return sum + elem.score;
+    }
+    else {
+      return sum;
+    }  
+  },0)
+
+  if (avg) {
+    let answer =  Number((avg / arr.length).toFixed(2));
+    return answer;
+  }
+  else {
+    return 0;
+  }
 
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-  // let arr = structuredClone(moviesArray);
-  moviesArray.sort((a, b) => {
+  let arr = JSON.parse(JSON.stringify(moviesArray))
+
+  arr.sort((a, b) => {
     if (a.year > b.year) {
       return 1;
     } 
@@ -57,15 +81,15 @@ function orderByYear(moviesArray) {
       return 0;
     }
   })
-  return moviesArray;
+  return arr;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-  // let arr = structuredClone(moviesArray);
+  let arr = JSON.parse(JSON.stringify(moviesArray))
   let count = 0;
 
-  moviesArray.sort((a, b) => {
+  arr.sort((a, b) => {
     if (a.title > b.title) {
       return 1;
     } 
@@ -76,7 +100,7 @@ function orderAlphabetically(moviesArray) {
       return 0;
     }
   })
-  return moviesArray.slice(0,19);
+  return arr.slice(0,20);
 
 }
 
@@ -87,7 +111,6 @@ function turnHoursToMinutes(moviesArray) {
 
   moviesArray.map((elem) => {
     hr += elem.duration.slice(0,1) * 60; 
-    console.log(hr )
     min = elem.duration.slice(3,5) + hr;
     elem.duration = min;
   })
