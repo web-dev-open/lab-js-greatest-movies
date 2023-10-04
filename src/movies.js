@@ -7,7 +7,10 @@ function getAllDirectors(moviesArray) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
-  return (moviesArray.filter((movie) => movie.director === 'Steven Spielberg' && movie.genre.includes('Drama'))).length;
+  return moviesArray.filter(
+    (movie) =>
+      movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')
+  ).length;
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
@@ -15,7 +18,7 @@ function scoresAverage(moviesArray) {
   if (moviesArray.length === 0) return 0;
   const totalScores = moviesArray.reduce((acc, movie) => {
     if (!movie.score) return acc + 0;
-    return acc + movie.score
+    return acc + movie.score;
   }, 0);
   const average = totalScores / moviesArray.length;
   return Math.round(average * 100) / 100;
@@ -23,7 +26,9 @@ function scoresAverage(moviesArray) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-  const dramaMovies = moviesArray.filter((movie) => movie.genre.includes('Drama'));
+  const dramaMovies = moviesArray.filter((movie) =>
+    movie.genre.includes('Drama')
+  );
   return scoresAverage(dramaMovies);
 }
 
@@ -51,12 +56,27 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  return moviesArray.map((movie) => {
+    const duration = movie.duration;
+    const hrs = Number(duration.split('h')[0]);
+    const mins = Number(duration.split('h')[1].split('min')[0].trim());
+    const newDuration = 60 * hrs + mins;
+    return {
+      title: movie.title,
+      year: movie.year,
+      director: movie.director,
+      duration: newDuration,
+      genre: movie.genre,
+      score: movie.score
+    };
+  });
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
-
-
+function bestYearAvg(moviesArray) {
+  
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
@@ -69,6 +89,6 @@ if (typeof module !== 'undefined') {
     orderByYear,
     orderAlphabetically,
     turnHoursToMinutes,
-    bestYearAvg,
+    bestYearAvg
   };
 }
