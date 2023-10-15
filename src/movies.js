@@ -11,7 +11,35 @@ function getAllDirectors(moviesArray) {
     return dict
 }
 let director = movies.map(getAllDirectors)
+
 log(director)
+
+//_Bonus_: Unique Director's name
+function uniquifyarr(arr) {
+  let newarr = [];
+  let element = '';
+
+  if (arr.length === 0) {
+    return null;
+  } else {
+    for (let i = 0; i < arr.length; i++) {
+      element = arr[i];
+      if (arr.indexOf(element) !== -1) {
+        if (arr.indexOf(element, i + 1) == -1) {
+          
+          newarr.push(element);
+        } 
+        else {
+          arr.splice(i, 1);
+        }
+      }
+    }
+    return newarr;
+  }
+}
+const uniqueDirector = uniquifyarr(director)
+console.log(uniqueDirector)
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
