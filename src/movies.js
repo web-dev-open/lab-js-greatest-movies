@@ -77,36 +77,32 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-  const getMinutes = (duration) => {
-    // Split the duration sting into parts
-    duration;
-
-    // Initialize total duration in minutes
+  // create a new array with duration in minutes
+  return moviesArray.map((movie) => {
+    const durationParts = movie.duration.split(' ');
     let totalMinutes = 0;
 
-    // Loop through the parts and add up the minutes
-    for (const part of parts) {
-      if (part.includes('h')) {
-        // Extract the hours and convet to minutes
-        totalMinutes += parseInt(part, 10) * 60;
-      } else if (part.includes('min')) {
-        // Extract the minutes
-        totalMinutes += parseInt(part, 10);
-      }
+    for (const part of durationParts) {
+      if (part.includes('h')) totalMinutes += parseInt(part, 10) * 60;
+      else if (part.includes('min')) totalMinutes += parseInt(part, 10);
     }
 
-    return totalMinutes;
-  };
-
-  const convertHoursToMinutes = moviesArray.map((movie) => {
-    movie.duration = getMinutes(movie.duration);
+    return { ...movie, duration: totalMinutes };
   });
-
-  return convertHoursToMinutes;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length === 0) {
+    return null;
+  }
+
+  // Crate an object ot store average score for each year
+  const yearAvgScores = {};
+
+  // Calculate average scores for each year
+  // movies.forEach(movie = )
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
