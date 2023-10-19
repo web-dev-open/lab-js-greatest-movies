@@ -101,7 +101,32 @@ function bestYearAvg(moviesArray) {
   const yearAvgScores = {};
 
   // Calculate average scores for each year
-  // movies.forEach(movie = )
+  moviesArray.forEach((movie) => {
+    const year = movie.year;
+    const score = movie.score || 0;
+
+    if (!yearAvgScores[year]) {
+      yearAvgScores[year] = { totalScore: 0, count: 0 };
+    }
+
+    yearAvgScores[year].totalScore += score;
+    yearAvgScores[year].count += 1;
+  });
+
+  // Find the year with the best average score
+  let bestYear = null;
+  let bestAvg = 0;
+
+  for (const year in yearAvgScores) {
+    const avg = yearAvgScores[year].totalScore / yearAvgScores[year].count;
+
+    if (avg > bestAvg || (avg === bestAvg && year < bestYear)) {
+      bestYear = year;
+      bestAvg = avg;
+    }
+  }
+
+  return `The best year was ${bestYear} with an average score of ${bestAvg}`;
 }
 
 // The following is required to make unit tests work.
