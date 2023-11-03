@@ -75,9 +75,54 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
-  
+  if (moviesArray.length === 0) return null;
+  const years = moviesArray.map((movie) => movie.year);
+  // const uniqueYears = [];
+  // years.forEach((year) => {
+  //   if (!uniqueYears.includes(year)) uniqueYears.push(year);
+  // });
+  const uniqueYears = [...new Set(years)];
+  const moviesPerYear = uniqueYears.map((year) => {
+    return moviesArray.filter((movie) => movie.year === year);
+  });
+  console.log(uniqueYears, moviesPerYear);
+  const averageRatingsForEachMovieYear = moviesPerYear.map((yearMovies) => {
+    const totalRating = yearMovies.reduce((acc, movie) => {
+      return acc + movie.score;
+    }, 0);
+    return totalRating / yearMovies.length;
+  });
+  console.log(averageRatingsForEachMovieYear);
+  const highestRating = averageRatingsForEachMovieYear.reduce((acc, rating) => {
+    if (rating > acc) acc = rating;
+    return acc;
+  }, averageRatingsForEachMovieYear[0]);
+  // Find Duplicates High Rating
+  const highestRatings = averageRatingsForEachMovieYear.reduce(
+    (acc, rating, index) => {
+      if (rating === highestRating) {
+        acc.push(index);
+      }
+      return acc;
+    },
+    []
+  );
+  let bestYear;
+  if (highestRatings.length === 0) {
+    const highestRatingIndex = averageRatingsForEachMovieYear.findIndex(
+      (rating) => rating === highestRating
+    );
+    bestYear = uniqueYears[highestRatingIndex];
+  } else {
+    bestYear = uniqueYears.reduce((acc, year, index) => {
+      if (highestRatings.includes(index)) {
+        if (year < acc) acc = year;
+      }
+      return acc;
+    });
+  }
+  return `The best year was ${bestYear} with an average score of ${highestRating}`;
 }
-
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
 if (typeof module !== 'undefined') {
