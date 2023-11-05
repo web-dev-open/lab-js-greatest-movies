@@ -126,7 +126,41 @@ console.log(`\n   The first 20 movies in alphabetical order are: ${JSON.stringif
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+
+console.log("\nIteration 7: Time format");
+
+function turnHoursToMinutes(moviesArray) {
+
+  // Create and initialice an array to store the minutes
+  const convertion = moviesArray.map(movie => {
+
+    // Lets create a variable to store them movie length
+    const [hours1, minutes1] = movie.duration.split("h ");
+
+    // If there is any error we can handle telling the code to take 0 with the or operator
+    const hours2 = parseInt(hours1) || 0;
+    const minutes2 = parseInt(minutes1) || 0;
+
+    // Convert total duration to minutes
+    const toMinutes = hours2 * 60 + minutes2;
+
+  // Return the object with the new value
+    return {
+      
+      // spread the aray to avoid mutation
+      ...movie,
+
+      // convert the hours and minutes to just minutes
+      duration: toMinutes
+    };
+  });
+
+  // Returnning the new data
+  return convertion;
+}
+
+// Showing the result
+console.log(`The hour and minute convertion array is: ${JSON.stringify(turnHoursToMinutes(movies), null, 2)}`);
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
