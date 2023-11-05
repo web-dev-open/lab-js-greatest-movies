@@ -15,7 +15,7 @@ function getAllDirectors(moviesArray) {
   return uniqueDirectors;
 }
 
-// Showing the result.
+// Showing the result. I am using JSON to give some format to the array
 console.log(`\n   The directors of the 250 most famous movies are: ${JSON.stringify(getAllDirectors(movies), null, 2)}`);
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -99,8 +99,8 @@ function orderByYear(moviesArray) {
   return sortedMovies;
 }
 
-// Printing the result
-console.log(`\n   The 250 most famous movies of all the time sorted by year are: ${orderByYear(movies)}`);
+// Printing the result. Using Stringify in order to show the array
+console.log(`\n   The 250 most famous movies of all the time sorted by year are: ${JSON.stringify(orderByYear(movies), null, 2)}`);
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
