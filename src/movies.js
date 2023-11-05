@@ -16,11 +16,11 @@ function getAllDirectors(moviesArray) {
 }
 
 // Showing the result.
-console.log(`The directors of the 250 most famous movies are: ${getAllDirectors(movies)}`);
+console.log(`\n   The directors of the 250 most famous movies are: ${JSON.stringify(getAllDirectors(movies), null, 2)}`);
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
-console.log("Iteration 2: Steven Spielberg. The best?");
+console.log("\nIteration 2: Steven Spielberg. The best?");
 
 function howManyMovies(moviesArray) {
 
@@ -35,11 +35,11 @@ function howManyMovies(moviesArray) {
 }
 
 // Print the result.
-console.log(`\nSteven Spielberg has been directed ${howManyMovies(movies)} drama movies which are in the top of 250 greatest movies of all the time`)
+console.log(`\n   Steven Spielberg has been directed ${howManyMovies(movies)} drama movies which are in the top of 250 greatest movies of all the time`)
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 
-console.log("Iteration 3: All scores average.")
+console.log("\nIteration 3: All scores average.")
 
 function scoresAverage(moviesArray) {
 
@@ -52,13 +52,55 @@ function scoresAverage(moviesArray) {
 }
 
 // Printing out the result
-console.log(`\nThe average Score of the 250 best movies is ${scoresAverage(movies)}. Pretty good!`);
+console.log(`\n   The average Score of the 250 best movies is ${scoresAverage(movies)}. Pretty good!`);
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+
+console.log("\nIteration 4: Drama movies.");
+
+function dramaMoviesScore(moviesArray) {
+
+  // First we filter the information and save it into a variable
+  const dramaMovies = moviesArray.filter(movies => movies.genre.includes("Drama"));
+
+  // We save the average on a variable
+  const dramaAvgr = dramaMovies.reduce((drama, movies) => drama + movies.score, 0) / dramaMovies.length;
+
+  // Return the average with 2 decimals.
+  return dramaAvgr.toFixed(2);
+}
+
+// Print the result:
+console.log(`\n   The average score of Drama Movies is: ${dramaMoviesScore(movies)}`);
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+
+console.log("\nIteration 5: Order by year");
+
+function orderByYear(moviesArray) {
+
+  // Create a copy of the array to avoid the mutation since we're using sort.
+  const sortedMovies = [... moviesArray];
+
+  // Sorting the movies in Ascending order
+  sortedMovies.sort((a, b) => {
+    if(a.year !== b.year) {
+
+      // Sorting by year ascending
+      return a.year - b.year 
+    } else {
+      
+      // If there are same years then sort alphabetical
+      return a.title.localeCompare(b.title);
+    }
+  });
+  
+  // Returning the value
+  return sortedMovies;
+}
+
+// Printing the result
+console.log(`\n   The 250 most famous movies of all the time sorted by year are: ${orderByYear(movies)}`);
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
