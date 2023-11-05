@@ -38,7 +38,21 @@ function howManyMovies(moviesArray) {
 console.log(`\nSteven Spielberg has been directed ${howManyMovies(movies)} drama movies which are in the top of 250 greatest movies of all the time`)
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+
+console.log("Iteration 3: All scores average.")
+
+function scoresAverage(moviesArray) {
+
+  // Save the average on an array
+  const average = moviesArray.reduce((score, movies) => score + movies.score, 0) / moviesArray.length;
+
+  // Return the value with 2 decimals
+  return average.toFixed(2);
+
+}
+
+// Printing out the result
+console.log(`\nThe average Score of the 250 best movies is ${scoresAverage(movies)}. Pretty good!`);
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {}
