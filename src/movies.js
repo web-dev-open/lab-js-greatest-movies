@@ -102,8 +102,28 @@ function orderByYear(moviesArray) {
 // Printing the result. Using Stringify in order to show the array
 console.log(`\n   The 250 most famous movies of all the time sorted by year are: ${JSON.stringify(orderByYear(movies), null, 2)}`);
 
-// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles.
+
+console.log("Iteration 6: Alphabetic order");
+
+function orderAlphabetically(moviesArray) {
+
+  // Create a new array with spread to avoid mutation since we're using sort.
+  const sortedMovies = [... moviesArray];
+
+  // Now we're sorting the movies by title and aphabetical
+  sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
+
+  // Slice the first 20 movies
+  const topMovies = sortedMovies.slice(0, 20);
+
+  // return the Top 20 Movies.
+  return topMovies;
+}
+
+// Showing the result using Stringify.
+console.log(`\n   The first 20 movies in alphabetical order are: ${JSON.stringify(orderAlphabetically(movies), null, 2)}`);
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
