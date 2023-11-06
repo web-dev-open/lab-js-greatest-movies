@@ -127,7 +127,7 @@ console.log(`\n   The first 20 movies in alphabetical order are: ${JSON.stringif
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-console.log("\nIteration 7: Time format");
+console.log("\nBONUS - Iteration 7: Time format");
 
 function turnHoursToMinutes(moviesArray) {
 
@@ -160,12 +160,72 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // Showing the result
-console.log(`The hour and minute convertion array is: ${JSON.stringify(turnHoursToMinutes(movies), null, 2)}`);
+console.log(`\n   The hour and minute convertion array is: ${JSON.stringify(turnHoursToMinutes(movies), null, 2)}`);
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
 
+console.log("\nBONUS - Iteration 8: Best yearly score average")
 
+function bestYearAvg(moviesArray) {
+  
+  // Create a new copy of the array with spread 
+  const bestYearMovies = moviesArray.map(movie => ({...movie}));
+
+  // Check if the array is empty
+  if(bestYearMovies.length === 0) {
+    return "No movies found"; 
+  }
+
+  // Create and empty object to store the scores
+  const yearAvg = {};
+
+   // Iteraction through the movies to calculate the total score
+  bestYearMovies.forEach(movie => {
+    
+    // Check if the year already exist in yearScore variable
+    if(yearAvg[movie.year]) {
+
+      // Already exists, update total score and count
+      yearAvg[movie.year].totalScore += movie.score;
+      yearAvg[movie.year].movieCount++;
+
+      // Calculate new average score
+      yearAvg[movie.year].avgScore = 
+        yearAvg[movie.year].totalScore / yearAvg[movie.year].movieCount;
+
+    } else {
+
+      // If the year doesn't exist. Create a new entry
+      yearAvg[movie.year] = {
+        totalScore: movie.score,
+        movieCount: 1,
+        avgScore: movie.score
+      };
+    }
+  });
+
+  // Find year with max average
+  let bestYear = "";
+  let bestAvgScore = 0;
+
+  // Now it is turn to Calculate the average score with for each. Then find the best year.
+  for(const year in yearAvg) {
+    
+    // If the avg score is higher:
+    if(yearAvg[year].avgScore > bestAvgScore) {
+
+      // If true update bestYear and bestAvgScore
+      bestYear = year;
+      bestAvgScore = yearAvg[year].avgScore;
+    }
+  }
+
+  // Return the result in a string.
+  return `The best year of the ${bestYearMovies.length} movies was ${bestYear} with an average score of ${bestAvgScore.toFixed(2)}`;
+}
+
+// Print the result
+console.log(`\n   ${bestYearAvg(movies)}`)
 
 console.log("\n");
 
