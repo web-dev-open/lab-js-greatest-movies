@@ -70,11 +70,28 @@ function orderAlphabetically(moviesArray) {
 }
 
 const orderTitle = orderAlphabetically(moviesArray);
-console.log('ITERATION 6');
 console.log(orderTitle);
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  let toMinutes = moviesArray.map((movie) => {
+    const splitHourMinute = movie.duration.split(' ');
+    let totalMinutes = 0;
+
+    splitHourMinute.forEach((part) => {
+      if (part.includes('h')) {
+        totalMinutes += parseInt(part) * 60;
+      } else {
+        totalMinutes += parseInt(part);
+      }
+    });
+    return { ...movie, duration: totalMinutes };
+  });
+  return toMinutes;
+}
+
+const minutes = turnHoursToMinutes(moviesArray);
+console.log(minutes);
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
