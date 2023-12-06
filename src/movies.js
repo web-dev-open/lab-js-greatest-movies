@@ -54,7 +54,13 @@ const averageDrama = dramaMoviesScore(moviesArray);
 console.log(averageDrama);
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  let copyArray = [...moviesArray];
+  let sortYear = copyArray.sort((a, b) => a.year - b.year);
+  return sortYear;
+}
+const ascendingYears = orderByYear(moviesArray);
+console.log(ascendingYears);
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
