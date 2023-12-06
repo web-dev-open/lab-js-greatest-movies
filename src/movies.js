@@ -94,7 +94,32 @@ const minutes = turnHoursToMinutes(moviesArray);
 console.log(minutes);
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length === 0) return null;
+
+  const years = Array.from(new Set(moviesArray.map((movie) => movie.year)));
+
+  const averageScores = years.map((year) => {
+    const moviesOfYear = moviesArray.filter((movie) => movie.year === year);
+    const average = scoresAverage(moviesOfYear);
+    return { year, average };
+  });
+
+  const bestYear = averageScores.reduce((best, current) => {
+    if (
+      current.average > best.average ||
+      (current.average === best.average && current.year < best.year)
+    ) {
+      return current;
+    }
+    return best;
+  });
+
+  return `The best year was ${bestYear.year} with an average score of ${bestYear.average}`;
+}
+
+const bestYear = bestYearAvg(moviesArray);
+console.log(bestYear);
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
