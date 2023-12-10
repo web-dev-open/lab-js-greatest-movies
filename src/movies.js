@@ -24,12 +24,20 @@ function howManyMovies(moviesArray) {
 }
 // Usage example:
 const spielbergDramaCount = howManyMovies();
-console.log(`Steven Spielberg directed ${spielbergDramaCount} drama movies.`);
-// console.log(howManyMovies());
+// console.log(`Steven Spielberg directed ${spielbergDramaCount} drama movies.`);
+
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+  moviesArray = newMovies;
+  const scores = moviesArray.reduce(function (acc, currentValue) {
+    return acc + currentValue.score
+  }, 0);
+  
+  return Number(scores / moviesArray.length).toFixed(2);
+}  
 
+console.log(scoresAverage());
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {}
 
