@@ -41,27 +41,27 @@ function scoresAverage(moviesArray) {
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-let myList = [];
 
 function dramaMoviesScore(moviesArray) {
   moviesArray = newMovies;
   let mydirector = moviesArray.filter(drama => drama.score && drama.genre.includes('Drama'));
   const scores = mydirector.reduce(function(acc, curr){
-    // myList.push(mydirector.curr);
     return acc + curr.score;
   }, 0);
 
   return Number(scores / mydirector.length).toFixed(2);
 }
-console.log(dramaMoviesScore());
 // console.log(dramaMoviesScore());
-
-// let mydirector = moviesArray.filter(director => director.director === "Steven Spielberg" && director.genre.includes('Drama'));
-
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  moviesArray = newMovies;
+  let myYear = moviesArray.map(years => years.year)
+  return myYear.sort((a, b) => a -b);
+}
+
+console.log(orderByYear());
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
