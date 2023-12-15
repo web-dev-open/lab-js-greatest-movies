@@ -2,6 +2,7 @@
   "name": "lab-greatest-movies",
   "version": "1.0.0",
   "license": "UNLICENSED",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll --verbose=false"
