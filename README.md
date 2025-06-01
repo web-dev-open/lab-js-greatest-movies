@@ -36,8 +36,6 @@ The best way to practice is to work with real data. In the **`src/data.js`** fil
 
 - Practice JavaScript advanced methods (`map`, `reduce`, `filter` and `sort` to manipulate arrays).
 
-  
-
 <br>
 
   
@@ -63,6 +61,9 @@ $ git push origin master
   
 
 - Create a Pull Request so that we can check your work.
+
+- Done:
+  ![Screenshot 2025-06-01 at 10 50 10 PM](https://github.com/user-attachments/assets/75ed1d52-eb89-4b10-920d-c247a59100c6)
 
   
 
