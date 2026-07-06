@@ -25,22 +25,73 @@ function howManyMovies(moviesArray) {
 
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+  const sum = moviesArray.score.reduce((sum, score) => {
+    return sum + score;
+  }, 0)
+  const average = sum / moviesArray.length;
+  return Math.round(average * 100) / 100
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+  const dramaScores = moviesArray
+    .filter(movie => movie.genre.includes("Drama"))
+    .map(movie => movie.score);
+
+  const average = dramaScores.reduce((sum, score) => sum + score, 0) / dramaScores.length;
+  
+  Math.round(average*100)/100
+}
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  const moviesToSort = JSON.parse(JSON.stringify(moviesArray))
+  const sortedMovies = moviesToSort.sort((a,b) => {
+    return a.year-b.year;
+  })
+  return sortedMovies
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  const moviesToSort = JSON.parse(JSON.stringify(moviesArray))
+  const sortedMovies = moviesToSort.sort((a,b) => {
+    if(a.title < b.title) return -1;
+    if(a.title > b.title) return 1;
+    if(a.title === b.title) return 0;
+  }).slice(0, 20);
+
+  return sortedMovies
+ }
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  const newMovies = moviesArray.map(movie => {
+    const parts = movie.duration.split(' ')
+
+    let hours = 0;
+    let minutes = 0;
+
+    parts.forEach(part => {
+      if(part.includes('h')){
+        hours = parseInt(part);
+      } else if(part.includes('min')){
+        minutes = parseInt(part);
+      }
+    })
+    return {
+      ...movie,
+      duration: `${hours*60 + minutes}min`
+    }
+  })
+  return newMovies
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) { }
 
 
 
